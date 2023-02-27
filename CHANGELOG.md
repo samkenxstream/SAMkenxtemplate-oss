@@ -1,5 +1,303 @@
 # Changelog
 
+## [4.11.4](https://github.com/npm/template-oss/compare/v4.11.3...v4.11.4) (2023-02-07)
+
+### Bug Fixes
+
+* [`5e6b26d`](https://github.com/npm/template-oss/commit/5e6b26db971e1835318ad9357ada20400354e794) [#277](https://github.com/npm/template-oss/pull/277) add logging for release comments (@lukekarrys)
+* [`46d1d14`](https://github.com/npm/template-oss/commit/46d1d1449b5422cde064dea37aead7edb4e6746d) add release.yml input to rerun jobs on a merged release (@lukekarrys)
+* [`6a1dcac`](https://github.com/npm/template-oss/commit/6a1dcac283d4b75c9737dd2a813ff78d932a564c) add more logging to release please action (@lukekarrys)
+
+## [4.11.3](https://github.com/npm/template-oss/compare/v4.11.2...v4.11.3) (2023-01-25)
+
+### Bug Fixes
+
+* [`657286c`](https://github.com/npm/template-oss/commit/657286c4594647141b0dc7b167ae6fd2dfa4eeed) [#273](https://github.com/npm/template-oss/pull/273) wrap pr title and base_ref in quotes (@nlf)
+
+## [4.11.2](https://github.com/npm/template-oss/compare/v4.11.1...v4.11.2) (2023-01-24)
+
+### Bug Fixes
+
+* [`8dac23a`](https://github.com/npm/template-oss/commit/8dac23ab285582afe7cdd2b463a5f1e3b1f3cb00) [#271](https://github.com/npm/template-oss/pull/271) capture exit code from npm view (@lukekarrys)
+
+## [4.11.1](https://github.com/npm/template-oss/compare/v4.11.0...v4.11.1) (2023-01-24)
+
+### Bug Fixes
+
+* [`f4ce7d2`](https://github.com/npm/template-oss/commit/f4ce7d2559437ae10814cbf26986f51367d23f5a) [#269](https://github.com/npm/template-oss/pull/269) add root release and release pr to data (@lukekarrys)
+
+## [4.11.0](https://github.com/npm/template-oss/compare/v4.10.0...v4.11.0) (2022-12-06)
+
+### Features
+
+* [`bf5f727`](https://github.com/npm/template-oss/commit/bf5f727f520e7b1db3f1126886212211f669a098) [#265](https://github.com/npm/template-oss/pull/265) link workspace changelog entries to release (@lukekarrys)
+
+## [4.10.0](https://github.com/npm/template-oss/compare/v4.9.0...v4.10.0) (2022-11-10)
+
+### Features
+
+* [`3fcf46c`](https://github.com/npm/template-oss/commit/3fcf46c801d0a86e0de90b235e0daa3f028a828e) add npmSpec config item (@lukekarrys)
+* [`e4465dd`](https://github.com/npm/template-oss/commit/e4465ddbfcafe7d0a3dc890e5f8b8319147d116b) merge npmrc files (@lukekarrys)
+
+### Bug Fixes
+
+* [`110b63a`](https://github.com/npm/template-oss/commit/110b63a4ad3fe48c24cb6db90b7879bfc14408b6) [#262](https://github.com/npm/template-oss/pull/262) use ci or update for release checklist (@lukekarrys)
+* [`dfbdadc`](https://github.com/npm/template-oss/commit/dfbdadcb85f2631f78af05c2abfbaa317b17cbd1) properly recreate release PR when run via workflow_dispatch (@lukekarrys)
+
+## [4.9.0](https://github.com/npm/template-oss/compare/v4.8.0...v4.9.0) (2022-11-09)
+
+### Features
+
+* [`1323cdb`](https://github.com/npm/template-oss/commit/1323cdb3328f94c1d8fb161ecbd751a74a4908b4) Updated SECURITY.md (@maclarel)
+
+## [4.8.0](https://github.com/npm/template-oss/compare/v4.7.1...v4.8.0) (2022-10-27)
+
+### Features
+
+* [`2c9e34c`](https://github.com/npm/template-oss/commit/2c9e34c771eda2d1f33be8defd84f9c7946f012c) [#255](https://github.com/npm/template-oss/pull/255) only fail on production `audit` (@lukekarrys)
+* [`49a0581`](https://github.com/npm/template-oss/commit/49a05818b7e721c223e6187a1f534a7a304f77fa) [#254](https://github.com/npm/template-oss/pull/254) replace --engines-strict check with arborist query (@lukekarrys)
+
+## [4.7.1](https://github.com/npm/template-oss/compare/v4.7.0...v4.7.1) (2022-10-25)
+
+### Bug Fixes
+
+* [`2ef9995`](https://github.com/npm/template-oss/commit/2ef9995b07e5fd3662c567349646484f3b08dccc) apply dogfood to this repos workspaces also (@lukekarrys)
+* [`9bdad61`](https://github.com/npm/template-oss/commit/9bdad61c1f73853b5198eea1e744994f286987a8) dont release specific apply changes based on public/private (@lukekarrys)
+* [`3d7e5e8`](https://github.com/npm/template-oss/commit/3d7e5e8e81b1606babcb73dd9dc5713402000f0e) conclude check should only run with a check_id (@lukekarrys)
+
+## [4.7.0](https://github.com/npm/template-oss/compare/v4.6.2...v4.7.0) (2022-10-25)
+
+### Features
+
+* [`49a17fe`](https://github.com/npm/template-oss/commit/49a17fe9025cf89ec983a90f0fe7ee88470ce0b6) [#247](https://github.com/npm/template-oss/pull/247) treat all `release/v*` branches as release targets (#247) (@lukekarrys)
+
+### Bug Fixes
+
+* [`b836015`](https://github.com/npm/template-oss/commit/b83601540f93b9b3a83e8dc0367ba1259c6ab93e) [#248](https://github.com/npm/template-oss/pull/248) allow ci-release workflow to be dispatched (@lukekarrys)
+* [`254086a`](https://github.com/npm/template-oss/commit/254086a1e00d50791dcd5ca3060432aaa4f830ae) make post dependabot commit a regular non-breaking chore (@lukekarrys)
+
+## [4.6.2](https://github.com/npm/template-oss/compare/v4.6.1...v4.6.2) (2022-10-18)
+
+### Bug Fixes
+
+* [`a722962`](https://github.com/npm/template-oss/commit/a722962521b049f45c690d861fe5fccafa91321a) [#244](https://github.com/npm/template-oss/pull/244) account for new npm-package-arg behavior (@wraithgar)
+
+### Dependencies
+
+* [`6fe7663`](https://github.com/npm/template-oss/commit/6fe7663cd7ee5bbb76be672f4936302156242603) bump npm-package-arg from 9.1.2 to 10.0.0
+
+## [4.6.1](https://github.com/npm/template-oss/compare/v4.6.0...v4.6.1) (2022-10-17)
+
+### Bug Fixes
+
+* [`98db362`](https://github.com/npm/template-oss/commit/98db362680158124c4da2ad4b56d2db7238de0ed) correct mismatched step ids in post dependabot (@lukekarrys)
+
+## [4.6.0](https://github.com/npm/template-oss/compare/v4.5.1...v4.6.0) (2022-10-14)
+
+### Features
+
+* [`2175b67`](https://github.com/npm/template-oss/commit/2175b67268e56f8e1d2ceb1892d61c378883f606) [#237](https://github.com/npm/template-oss/pull/237) add workflow dispatch to rerun release ci (@lukekarrys)
+
+### Bug Fixes
+
+* [`09bcd64`](https://github.com/npm/template-oss/commit/09bcd6486133d4cb9ab5396868de839649de00be) [#236](https://github.com/npm/template-oss/pull/236) remove npmcli/fs dep (@lukekarrys)
+* [`2fef1e8`](https://github.com/npm/template-oss/commit/2fef1e81c993646eaf903a7b8999c2bad124111b) [#235](https://github.com/npm/template-oss/pull/235) refactor audit command into a separate file for overriding (@lukekarrys)
+
+### Dependencies
+
+* [`47eae35`](https://github.com/npm/template-oss/commit/47eae35c2fe41b5445f7404fe7b6ce1eb6d97e40) [#242](https://github.com/npm/template-oss/pull/242) bump @npmcli/git from 3.0.2 to 4.0.0 (#242)
+* [`243a23f`](https://github.com/npm/template-oss/commit/243a23f829b07530c5245096431d6776cf27e20b) [#241](https://github.com/npm/template-oss/pull/241) bump @npmcli/map-workspaces from 2.0.4 to 3.0.0 (#241)
+* [`179f02a`](https://github.com/npm/template-oss/commit/179f02aa170671466df8f11656f64858f3c20b25) [#240](https://github.com/npm/template-oss/pull/240) bump proc-log from 2.0.1 to 3.0.0 (#240)
+* [`faf1ba0`](https://github.com/npm/template-oss/commit/faf1ba0bd465d8ac118c61a412e7a68f795d016c) [#238](https://github.com/npm/template-oss/pull/238) bump @npmcli/package-json from 2.0.0 to 3.0.0 (#238)
+* [`eaaf3d9`](https://github.com/npm/template-oss/commit/eaaf3d9f79ef4979f2495a806bd4f03f35a5d037) [#234](https://github.com/npm/template-oss/pull/234) bump hosted-git-info from 5.1.0 to 6.0.0
+* [`f499ac5`](https://github.com/npm/template-oss/commit/f499ac5b4bf907d72421c0eebe3f62074412f40c) [#231](https://github.com/npm/template-oss/pull/231) bump json-parse-even-better-errors from 2.3.1 to 3.0.0
+
+## [4.5.1](https://github.com/npm/template-oss/compare/v4.5.0...v4.5.1) (2022-10-08)
+
+### Bug Fixes
+
+* [`bc72b05`](https://github.com/npm/template-oss/commit/bc72b05884dc59cd5f45b6f29f3308aad0456e7a) [#230](https://github.com/npm/template-oss/pull/230) add individual workspace flag to lint step (@lukekarrys)
+
+### Dependencies
+
+* [`0ccfc17`](https://github.com/npm/template-oss/commit/0ccfc17f1c4033575cc66c67513baf85a9f2b047) [#228](https://github.com/npm/template-oss/pull/228) `@npmcli/release-please@14.2.6`
+
+## [4.5.0](https://github.com/npm/template-oss/compare/v4.4.5...v4.5.0) (2022-10-05)
+
+### Features
+
+* [`aef199e`](https://github.com/npm/template-oss/commit/aef199e300b3bb00d7631b86ca09d6d3d1b86386) [#221](https://github.com/npm/template-oss/pull/221) add default release-manager script (#221) (@lukekarrys)
+
+### Bug Fixes
+
+* [`b313218`](https://github.com/npm/template-oss/commit/b313218153e55d83713c8d8830e74a1d0d412098) [#226](https://github.com/npm/template-oss/pull/226) dont use -ws flags in release workflow when not necessary (#226) (@lukekarrys)
+* [`f6a0268`](https://github.com/npm/template-oss/commit/f6a02684cd5742274ac33efc6efa89707d013bcc) [#225](https://github.com/npm/template-oss/pull/225) bump workspace dev deps with a deps commit (#225) (@lukekarrys)
+* [`298600d`](https://github.com/npm/template-oss/commit/298600db3509f5bab469caa95fd73ceedc42cde4) [#224](https://github.com/npm/template-oss/pull/224) use head.ref for post dependabot checkout (#224) (@lukekarrys)
+
+## [4.4.5](https://github.com/npm/template-oss/compare/v4.4.4...v4.4.5) (2022-10-04)
+
+### Bug Fixes
+
+* [`6ecdea4`](https://github.com/npm/template-oss/commit/6ecdea4580e00bb3fe80ca4765f055521c51d4ce) [#222](https://github.com/npm/template-oss/pull/222) fallback to lower bound of range for engines check (@lukekarrys)
+
+## [4.4.4](https://github.com/npm/template-oss/compare/v4.4.3...v4.4.4) (2022-09-30)
+
+### Bug Fixes
+
+* [`6a2b97b`](https://github.com/npm/template-oss/commit/6a2b97b2dafcef7d795c51d3b01830c4fcda7c25) use github.ref_name for post dependabot checkout (@lukekarrys)
+
+## [4.4.3](https://github.com/npm/template-oss/compare/v4.4.2...v4.4.3) (2022-09-29)
+
+### Bug Fixes
+
+* [`e21239e`](https://github.com/npm/template-oss/commit/e21239e0dea2dae585102878a4fc13e8ae7cae7a) [#218](https://github.com/npm/template-oss/pull/218) checkout head ref name in post dependabot (@lukekarrys)
+
+## [4.4.2](https://github.com/npm/template-oss/compare/v4.4.1...v4.4.2) (2022-09-23)
+
+### Bug Fixes
+
+* [`8e16dc7`](https://github.com/npm/template-oss/commit/8e16dc76d9a469dd9caa73062e0983bef6792c82) [#216](https://github.com/npm/template-oss/pull/216) remove leading slash from dependabot metadata dir (@lukekarrys)
+
+### Dependencies
+
+* [`53bb928`](https://github.com/npm/template-oss/commit/53bb928258aa271c65a9b6d77c8e4cf6d60bbebe) `@npmcli/release-please@14.2.5`
+
+## [4.4.1](https://github.com/npm/template-oss/compare/v4.4.0...v4.4.1) (2022-09-22)
+
+### Bug Fixes
+
+* [`1649552`](https://github.com/npm/template-oss/commit/1649552c86016ae422407610f9be848b0dfd8bae) only extend underscore partial files (@lukekarrys)
+
+## [4.4.0](https://github.com/npm/template-oss/compare/v4.3.2...v4.4.0) (2022-09-22)
+
+### Features
+
+* [`d4ddfca`](https://github.com/npm/template-oss/commit/d4ddfca7d1c9077dedbf0e751bb133b9c79ed1b6) [#213](https://github.com/npm/template-oss/pull/213) allow extending partials (#213) (@lukekarrys)
+* [`88f8387`](https://github.com/npm/template-oss/commit/88f8387ee90d7ee964ad40b4b90570c18b602ce5) [#212](https://github.com/npm/template-oss/pull/212) add a strict engines check to ci (#212) (@lukekarrys)
+* [`2fdcddd`](https://github.com/npm/template-oss/commit/2fdcddd615066178cd1e84e2cd2144e9b4c566ef) [#180](https://github.com/npm/template-oss/pull/180) make template-oss postinstall commit a breaking change for majors (#180) (@lukekarrys)
+
+### Bug Fixes
+
+* [`0e95298`](https://github.com/npm/template-oss/commit/0e952980f78b72097123b157cb220bd6c44b5199) [#214](https://github.com/npm/template-oss/pull/214) properly quote strings with exclamation marks (#214) (@lukekarrys)
+* [`99f3945`](https://github.com/npm/template-oss/commit/99f394564552d43cd97becb5431daef0c3c0e464) [#210](https://github.com/npm/template-oss/pull/210) make tap test-ignore a regex instead of a glob (#210) (@lukekarrys)
+* [`e19ebc3`](https://github.com/npm/template-oss/commit/e19ebc3270f3e563e206e474c9e0cff3c7dcd742) [#209](https://github.com/npm/template-oss/pull/209) properly ignore workspace paths from root during ci (#209) (@lukekarrys)
+
+## [4.3.2](https://github.com/npm/template-oss/compare/v4.3.1...v4.3.2) (2022-09-19)
+
+### Bug Fixes
+
+* [`5fededb`](https://github.com/npm/template-oss/commit/5fededb16da81db88b56db663466d968471df973) [#207](https://github.com/npm/template-oss/pull/207) workspace can use only latest ci version of root (@lukekarrys)
+
+## [4.3.1](https://github.com/npm/template-oss/compare/v4.3.0...v4.3.1) (2022-09-19)
+
+### Bug Fixes
+
+* [`817d49e`](https://github.com/npm/template-oss/commit/817d49e3d64f76ce2fd6d1d765044908bd2af022) [#205](https://github.com/npm/template-oss/pull/205) remove 'All' from regular test job name (@lukekarrys)
+
+## [4.3.0](https://github.com/npm/template-oss/compare/v4.2.0...v4.3.0) (2022-09-19)
+
+### Features
+
+* [`3640080`](https://github.com/npm/template-oss/commit/36400808bf9da35e10aab0c6663fb284624b8dd6) add checks to release pull request (@lukekarrys)
+* [`5b65537`](https://github.com/npm/template-oss/commit/5b655374771b62c572800dd56f44c102f863ba73) add names to all jobs and steps (@lukekarrys)
+* [`caf393c`](https://github.com/npm/template-oss/commit/caf393c6d01b7608eeafe4503fb73fd47d21193c) add dependabot configuration for workspaces (@lukekarrys)
+* [`e43ee70`](https://github.com/npm/template-oss/commit/e43ee70c03e41c6bc25b1938a360ccfc33a30319) [#198](https://github.com/npm/template-oss/pull/198) update codeql actions to v2 (@lukekarrys)
+
+## [4.2.0](https://github.com/npm/template-oss/compare/v4.1.2...v4.2.0) (2022-09-15)
+
+### Features
+
+* [`849cecc`](https://github.com/npm/template-oss/commit/849cecce6851d644d8a0e1a153ce3d245d967d44) add `content` config option to allow a module to set own content (@lukekarrys)
+* [`423450f`](https://github.com/npm/template-oss/commit/423450f9802a676a035143a1fd503403c305e79d) [#195](https://github.com/npm/template-oss/pull/195) remove postpublish from package.json (#195) (@lukekarrys)
+
+### Bug Fixes
+
+* [`ffa2c08`](https://github.com/npm/template-oss/commit/ffa2c08267d0807c1e341e907e1eef8b179d880b) [#189](https://github.com/npm/template-oss/pull/189) dont run workflows outside of npm org (#194) (@lukekarrys)
+
+## [4.1.2](https://github.com/npm/template-oss/compare/v4.1.1...v4.1.2) (2022-09-14)
+
+### Bug Fixes
+
+* [`6bc355a`](https://github.com/npm/template-oss/commit/6bc355a2b313bdde0fd6fe7cdf0c290ebf747af9) [#192](https://github.com/npm/template-oss/pull/192) set package.json version from release please (#192) (@lukekarrys)
+
+## [4.1.1](https://github.com/npm/template-oss/compare/v4.1.0...v4.1.1) (2022-09-13)
+
+### Bug Fixes
+
+* [`78a05fe`](https://github.com/npm/template-oss/commit/78a05fe8393dbf9e4d3bd43f2eff4db12921cde5) [#190](https://github.com/npm/template-oss/pull/190) pass current github ref to release please (#190) (@lukekarrys)
+
+## [4.1.0](https://github.com/npm/template-oss/compare/v4.0.0...v4.1.0) (2022-09-13)
+
+### Features
+
+* [`352d332`](https://github.com/npm/template-oss/commit/352d33210a89deee6b85ce6e8d9650054177e10f) [#187](https://github.com/npm/template-oss/pull/187) add release branches config to release-please workflow (#187) (@lukekarrys)
+
+### Bug Fixes
+
+* [`b58d86a`](https://github.com/npm/template-oss/commit/b58d86adc26d3d6fc07c682391a597398dd3a5b3) [#183](https://github.com/npm/template-oss/pull/183) use conventional commits from release-please for changelog (#183) (@lukekarrys)
+
+## [4.0.0](https://github.com/npm/template-oss/compare/v3.8.1...v4.0.0) (2022-09-08)
+
+### ⚠ BREAKING CHANGES
+
+* this updates this package and the templated engines for node to `^14.17.0 || ^16.13.0 || >=18.0.0`
+
+### Features
+
+  * [`a72774a`](https://github.com/npm/template-oss/commit/a72774aa4cd4ad74df5f85b2793d8408688507da) [#184](https://github.com/npm/template-oss/pull/184) feat: update engines to `^14.17.0 || ^16.13.0 || >=18.0.0` (@lukekarrys)
+
+## [3.8.1](https://github.com/npm/template-oss/compare/v3.8.0...v3.8.1) (2022-09-01)
+
+### Bug Fixes
+
+  * [`70782b3`](https://github.com/npm/template-oss/commit/70782b3677e40472260853df92d3ca8b805af422) [#179](https://github.com/npm/template-oss/pull/179) fix: update a few release nits after trying it on the cli (@lukekarrys)
+
+## [3.8.0](https://github.com/npm/template-oss/compare/v3.7.1...v3.8.0) (2022-08-31)
+
+### Features
+
+  * [`7562777`](https://github.com/npm/template-oss/commit/75627773c0afd3e9dbe5c176a797f363d81208f3) [#174](https://github.com/npm/template-oss/pull/174) feat: use custom release please script (@lukekarrys)
+
+### Bug Fixes
+
+  * [`0f44075`](https://github.com/npm/template-oss/commit/0f440750cbe55c02df5c2b8a479d51bd895ce17f) [#175](https://github.com/npm/template-oss/pull/175) fix: only add release please workspace plugins to monorepos (@lukekarrys)
+
+## [3.7.1](https://github.com/npm/template-oss/compare/v3.7.0...v3.7.1) (2022-08-25)
+
+
+### Bug Fixes
+
+* add tap matcher to workspaces ([ce977c4](https://github.com/npm/template-oss/commit/ce977c4737476ed84d2d5c5f584daab7d1c780c6))
+* remove unnecessary if statement in release please action ([678cb5a](https://github.com/npm/template-oss/commit/678cb5acb93206568a5b7e07d5bd41a669d7db8b))
+
+## [3.7.0](https://github.com/npm/template-oss/compare/v3.6.0...v3.7.0) (2022-08-25)
+
+
+### Features
+
+* use release please manifest configuration ([#164](https://github.com/npm/template-oss/issues/164)) ([95118ec](https://github.com/npm/template-oss/commit/95118ec0704162c1c25f3ccc0099ac972bfd752a))
+
+
+### Bug Fixes
+
+* default root component to empty string to match previous behavior ([#166](https://github.com/npm/template-oss/issues/166)) ([0f2a89f](https://github.com/npm/template-oss/commit/0f2a89f6fa55e918cab151af11e96a256ecd5a7e))
+* remove old release please files ([#170](https://github.com/npm/template-oss/issues/170)) ([09d955f](https://github.com/npm/template-oss/commit/09d955f3dbc68e16cbe34d018d6197a06bc66727))
+
+## [3.6.0](https://github.com/npm/template-oss/compare/v3.5.0...v3.6.0) (2022-08-22)
+
+
+### Features
+
+* add a problem matcher for tap output ([#160](https://github.com/npm/template-oss/issues/160)) ([8176e44](https://github.com/npm/template-oss/commit/8176e44f9764e09e7d5c52c2aadfc1c0ca228af3))
+* make cron workflows run early PT ([#159](https://github.com/npm/template-oss/issues/159)) ([6f571eb](https://github.com/npm/template-oss/commit/6f571eb93c2c101926a8dae7b7160e981c208ab7))
+
+
+### Bug Fixes
+
+* compare to \n instead of os.EOL ([#157](https://github.com/npm/template-oss/issues/157)) ([5517e9e](https://github.com/npm/template-oss/commit/5517e9eb0f081217423a2c193eabe2496c08eaab))
+* pin yaml to 2.0.0-11 ([#161](https://github.com/npm/template-oss/issues/161)) ([e095275](https://github.com/npm/template-oss/commit/e095275f229c66d8820f4edc5b801ceee60538df))
+* remove more usage of os.EOL ([#162](https://github.com/npm/template-oss/issues/162)) ([4dde648](https://github.com/npm/template-oss/commit/4dde648deb0d880d12f8810914309a9aa0947010))
+
 ## [3.5.0](https://github.com/npm/template-oss/compare/v3.4.3...v3.5.0) (2022-05-11)
 
 

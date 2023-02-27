@@ -10,6 +10,9 @@ const localConfigs = readdir(__dirname)
 
 module.exports = {
   root: true,
+  ignorePatterns: [
+    'workspace/test-workspace/**',
+  ],
   extends: [
     '@npmcli',
     ...localConfigs,

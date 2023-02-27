@@ -12,20 +12,25 @@ t.test('apply and check multiple is ok', async (t) => {
   t.same(await s.runAll(), [])
 })
 
-t.test('empty content is ok', async (t) => {
-  const s = await setup(t, { content: {} })
+t.test('apply and check workspaces are ok', async (t) => {
+  const s = await setup(t, {
+    ok: true,
+    workspaces: { a: 'a', b: 'b', c: 'c' },
+  })
+  t.same(await s.runAll(), [])
   t.same(await s.runAll(), [])
 })
 
-t.test('empty file objects', async (t) => {
-  const s = await setup.git(t, {
-    ok: true,
-    workspaces: { a: 'a', b: 'b' },
-    content: {
-      rootRepo: {},
-      rootModule: {},
-      workspaceRepo: {},
-      workspaceModule: {},
+t.test('empty content is ok', async (t) => {
+  const s = await setup(t, {
+    package: {
+      templateOSS: {
+        content: 'content_dir',
+        defaultContent: false,
+      },
+    },
+    testdir: {
+      content_dir: { 'index.js': 'module.exports={}' },
     },
   })
   t.same(await s.runAll(), [])

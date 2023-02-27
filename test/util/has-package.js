@@ -1,7 +1,8 @@
-const fs = require('@npmcli/fs')
+const fs = require('fs/promises')
 const t = require('tap')
 const path = require('path')
 const hasPackage = require('../../lib/util/has-package.js')
+const { name: NAME } = require('../../package.json')
 
 const checks = [
   [{ a: '1.2.3' }, 'a@1.2.3', true],
@@ -20,6 +21,9 @@ const checks = [
   [{ a: '^1.0.0' }, 'a@^1.5.0', false],
   [{ a: '^1.0.0' }, 'a@1.5.0', false],
   [{ a: 'npm/cli#abc' }, 'a', false],
+  [{ [NAME]: 'npm/cli#abc' }, NAME, true],
+  [{ a: 'https://test.com/npm/cli.tgz' }, 'a', false],
+  [{ a: 'file:../path/to/cli.tgz' }, 'a', true],
   [{ a: '^1.0.0' }, 'a@sometag', false],
 ]
 

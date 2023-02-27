@@ -1,8 +1,9 @@
 const t = require('tap')
-const { join, isAbsolute, resolve } = require('path')
+const { join, resolve, posix } = require('path')
 const { merge, defaults, escapeRegExp: esc } = require('lodash')
-const fs = require('@npmcli/fs')
+const fs = require('fs/promises')
 const Git = require('@npmcli/git')
+const localeCompare = require('@isaacs/string-locale-compare')('en')
 const npa = require('npm-package-arg')
 const output = require('../lib/util/output.js')
 const apply = require('../lib/apply/index.js')
@@ -19,6 +20,9 @@ const pkgWithName = (name, defName) => {
   if (!pkg.name) {
     pkg.name = defName
   }
+  if (!pkg.version) {
+    pkg.version = '1.0.0'
+  }
   return pkg
 }
 
@@ -30,9 +34,16 @@ const okPackage = () => Object.entries(CONTENT.requiredPackages)
       return [arg.name, arg.fetchSpec === 'latest' ? '*' : arg.fetchSpec]
     }))
     return acc
-  }, {})
+  }, {
+    tap: {
+      'nyc-arg': [
+        '--exclude',
+        'tap-snapshots/**',
+      ],
+    },
+  })
 
-const setupRoot = async (root, content) => {
+const setupRoot = async (root) => {
   const rootPath = (...p) => join(root, ...p)
 
   // fs methods for reading from the root
@@ -80,10 +91,9 @@ const setupRoot = async (root, content) => {
     readJson: async (f) => JSON.parse(await rootFs.readFile(f)),
     writeJson: (p, d) => rootFs.writeFile(p, JSON.stringify(d, null, 2)),
     join: rootPath,
-    // use passed in content path or allow overriding per method call for tests
-    apply: () => apply(root, content),
-    check: () => check(root, content),
-    runAll: () => apply(root, content).then(() => check(root, content)),
+    apply: () => apply(root),
+    check: () => check(root),
+    runAll: () => apply(root).then(() => check(root)),
   }
 }
 
@@ -91,7 +101,6 @@ const setup = async (t, {
   package = {},
   workspaces = {},
   testdir = {},
-  content,
   ok,
 } = {}) => {
   const wsLookup = {}
@@ -114,7 +123,7 @@ const setup = async (t, {
         pkgWithName(wsPkgName, wsBase),
         ok ? okPackage() : {}
       )
-      const wsPath = join(wsDir, wsBase)
+      const wsPath = posix.join(wsDir, wsBase)
       // obj to lookup workspaces by path in tests
       wsLookup[wsBase] = wsPath
       merge(testdir[wsDir], { [wsBase]: createPackageJson(wsPkg) })
@@ -129,15 +138,8 @@ const setup = async (t, {
     testdir
   ))
 
-  if (typeof content === 'string') {
-    // default content path is absolute but tests can either setup their
-    // own relative path or pass in objects. But if it is a path it has
-    // to be absolute to be passed in
-    content = isAbsolute(content) ? content : join(root, content)
-  }
-
   return {
-    ...(await setupRoot(root, content)),
+    ...(await setupRoot(root)),
     workspaces: wsLookup,
   }
 }
@@ -163,14 +165,18 @@ const setupGit = async (...args) => {
 }
 
 const cleanSnapshot = (str) => str
+  .replace(resolve(), '{{ROOT}}')
   .replace(/\\+/g, '/')
   .replace(/\r\n/g, '\n')
   .replace(new RegExp(`("version": "|${esc(NAME)}@)${esc(VERSION)}`, 'g'), '$1{{VERSION}}')
 const formatSnapshots = {
-  readdir: (arr) => arr.join('\n').trim(),
-  readdirSource: (obj) => Object.entries(obj).map(([file, content]) =>
-    [file, '='.repeat(40), content].join('\n').trim()).join('\n\n').trim(),
   checks: (arr) => output(arr).trim(),
+  readdir: (arr) => arr.sort(localeCompare).join('\n').trim(),
+  readdirSource: (obj) => Object.entries(obj)
+    .sort((a, b) => localeCompare(a[0], b[0]))
+    .map(([file, content]) => [file, '='.repeat(40), content].join('\n').trim())
+    .join('\n\n')
+    .trim(),
 }
 
 module.exports = setup

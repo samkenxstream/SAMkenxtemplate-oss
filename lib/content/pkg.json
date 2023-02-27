@@ -1,31 +1,47 @@
 {
   "author": "GitHub Inc.",
-  "files": {{{json distPaths}}},
+  "files": {{{ json distPaths }}},
   "scripts": {
     "lint": "eslint \"**/*.js\"",
     "postlint": "template-oss-check",
     "template-oss-apply": "template-oss-apply --force",
-    "lintfix": "{{npmBin}} run lint -- --fix",
-    "preversion": "{{npmBin}} test",
-    {{#if pkgPrivate}}
-    "postversion": "git push origin --follow-tags",
-    {{else}}
-    "postversion": "{{npmBin}} publish",
-    "prepublishOnly": "git push origin --follow-tags",
-    {{/if}}
+    "lintfix": "{{ localNpmPath }} run lint -- --fix",
     "snap": "tap",
     "test": "tap",
-    "posttest": "{{npmBin}} run lint",
-    "template-copy": {{{del}}},
-    "lint:fix": {{{del}}}
+    "posttest": "{{ localNpmPath }} run lint",
+    {{#if isRootMono}}
+    "test-all": "{{ localNpmPath }} run test {{ allFlags }}",
+    "lint-all": "{{ localNpmPath }} run lint {{ allFlags }}",
+    {{/if}}
+    "template-copy": {{{ del }}},
+    "lint:fix": {{{ del }}},
+    "preversion": {{{ del }}},
+    "postversion": {{{ del }}},
+    "prepublishOnly": {{{ del }}},
+    "postpublish": {{{ del }}}
   },
-  "repository": {{#if repository}}{{{json repository}}}{{else}}{{{del}}}{{/if}},
+  "repository": {{#if repository}}{{{ json repository }}}{{else}}{{{ del }}}{{/if}},
   "engines": {
-    "node": {{{json engines}}}
+    {{#if engines}}
+    "node": {{{ json engines }}}
+    {{/if}}
   },
-  {{{json __CONFIG_KEY__}}}: {
-    "version": {{#if isDogFood}}{{{del}}}{{else}}{{{json __VERSION__}}}{{/if}}
+  {{{ json __CONFIG_KEY__ }}}: {
+    "version": {{#if isDogFood}}{{{ del }}}{{else}}{{{ json __VERSION__ }}}{{/if}}
   },
-  "templateVersion": {{{del}}},
-  "standard": {{{del}}}
+  "templateVersion": {{{ del }}},
+  "standard": {{{ del }}},
+  "tap": {
+    {{#if workspacePaths}}
+    "test-ignore": "^({{ join workspacePaths "|" }})/",
+    {{/if}}
+    "nyc-arg": [
+      {{#each workspaceGlobs}}
+      "--exclude",
+      "{{ . }}",
+      {{/each}}
+      "--exclude",
+      "tap-snapshots/**"
+    ]
+  }
 }
