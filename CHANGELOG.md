@@ -1,5 +1,38 @@
 # Changelog
 
+## [4.13.0](https://github.com/npm/template-oss/compare/v4.12.1...v4.13.0) (2023-03-23)
+
+### Features
+
+* [`7102893`](https://github.com/npm/template-oss/commit/7102893c56e12edff3b236379e13cf11d3e4dca7) [#296](https://github.com/npm/template-oss/pull/296) add autopublish (#296) (@lukekarrys)
+
+### Bug Fixes
+
+* [`9a21a17`](https://github.com/npm/template-oss/commit/9a21a17f565588706d8073f7e14c29cf0d65f18b) [#297](https://github.com/npm/template-oss/pull/297) only show test step for manual publish (#297) (@lukekarrys)
+
+### Dependencies
+
+* [`f92b1ca`](https://github.com/npm/template-oss/commit/f92b1ca2bfc29dfc8c7144dce4bf1d1ae8dd8262) [#294](https://github.com/npm/template-oss/pull/294) bump ini from 3.0.1 to 4.0.0 (#294)
+
+## [4.12.1](https://github.com/npm/template-oss/compare/v4.12.0...v4.12.1) (2023-03-21)
+
+### Dependencies
+
+* [`07bec3b`](https://github.com/npm/template-oss/commit/07bec3b404af1ae329f284985edfa2f363668c4e) [#293](https://github.com/npm/template-oss/pull/293) bump glob from 8.1.0 to 9.3.1 (#293)
+* [`fb95639`](https://github.com/npm/template-oss/commit/fb956392cfcdf0cc3679ce7cb3911e00f058adcc) [#290](https://github.com/npm/template-oss/pull/290) bump just-diff from 5.2.0 to 6.0.0 (#290)
+
+## [4.12.0](https://github.com/npm/template-oss/compare/v4.11.4...v4.12.0) (2023-02-13)
+
+### Features
+
+* [`6984cbd`](https://github.com/npm/template-oss/commit/6984cbdeafcc118824b4400729e4f308bf5dc18d) [#285](https://github.com/npm/template-oss/pull/285) update SECURITY.md (#285) (@lukekarrys)
+
+### Bug Fixes
+
+* [`241dbf2`](https://github.com/npm/template-oss/commit/241dbf27d7df953839de7a7ed128facf55b2464d) [#282](https://github.com/npm/template-oss/pull/282) tag codeowner for all release ci runs that are not success (#282) (@lukekarrys)
+* [`dc73ffe`](https://github.com/npm/template-oss/commit/dc73ffe1748397d600b385a3fbde23d790f6f1ff) [#281](https://github.com/npm/template-oss/pull/281) remove deprecated set-output in favor of GITHUB_OUTPUT (#281) (@lukekarrys)
+* [`f283d4a`](https://github.com/npm/template-oss/commit/f283d4a99bf9c22bd66fce327cd5665d0406bb5d) [#279](https://github.com/npm/template-oss/pull/279) add pull request numbers to all rebased commits (#279) (@lukekarrys)
+
 ## [4.11.4](https://github.com/npm/template-oss/compare/v4.11.3...v4.11.4) (2023-02-07)
 
 ### Bug Fixes

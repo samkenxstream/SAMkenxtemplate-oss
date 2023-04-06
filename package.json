@@ -1,6 +1,6 @@
 {
   "name": "@npmcli/template-oss",
-  "version": "4.11.4",
+  "version": "4.13.0",
   "description": "templated files used in npm CLI team oss projects",
   "main": "lib/content/index.js",
   "bin": {
@@ -42,13 +42,13 @@
     "@npmcli/package-json": "^3.0.0",
     "@octokit/rest": "^19.0.4",
     "diff": "^5.0.0",
-    "glob": "^8.0.1",
+    "glob": "^9.3.1",
     "handlebars": "^4.7.7",
     "hosted-git-info": "^6.0.0",
-    "ini": "^3.0.1",
+    "ini": "^4.0.0",
     "json-parse-even-better-errors": "^3.0.0",
     "just-deep-map-values": "^1.1.1",
-    "just-diff": "^5.0.1",
+    "just-diff": "^6.0.0",
     "lodash": "^4.17.21",
     "npm-package-arg": "^10.0.0",
     "proc-log": "^3.0.0",
@@ -76,7 +76,8 @@
     "test-ignore": "^(workspace/test-workspace)/"
   },
   "templateOSS": {
-    "//@npmcli/template-oss": "This file is partially managed by @npmcli/template-oss. Edits may be overwritten."
+    "//@npmcli/template-oss": "This file is partially managed by @npmcli/template-oss. Edits may be overwritten.",
+    "publish": true
   },
   "engines": {
     "node": "^14.17.0 || ^16.13.0 || >=18.0.0"
