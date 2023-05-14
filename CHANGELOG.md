@@ -1,5 +1,41 @@
 # Changelog
 
+## [4.15.1](https://github.com/npm/template-oss/compare/v4.15.0...v4.15.1) (2023-05-03)
+
+### Bug Fixes
+
+* [`6f5a253`](https://github.com/npm/template-oss/commit/6f5a2533dadb48edc822a798a2cdda3dcd3e20b0) [#313](https://github.com/npm/template-oss/pull/313) make settings file actually work (#313) (@nlf)
+
+## [4.15.0](https://github.com/npm/template-oss/compare/v4.14.1...v4.15.0) (2023-05-03)
+
+### Features
+
+* [`96776b4`](https://github.com/npm/template-oss/commit/96776b44d73e4695d1ddad07d9104830baa61f11) [#312](https://github.com/npm/template-oss/pull/312) add CONTRIBUTING.md (#312) (@wraithgar)
+* [`be7f16a`](https://github.com/npm/template-oss/commit/be7f16a3662fbd2c0c5dacdf0b559f88dde81f7a) [#310](https://github.com/npm/template-oss/pull/310) add probot settings template (#310) (@nlf)
+
+### Bug Fixes
+
+* [`238fc4a`](https://github.com/npm/template-oss/commit/238fc4ae07fc9d05454c7f478dfe980b393c10f5) [#309](https://github.com/npm/template-oss/pull/309) pull PR_TITLE into env (@wraithgar)
+* [`1edde27`](https://github.com/npm/template-oss/commit/1edde270606255276dc30ef1526970cac1b30644) [#308](https://github.com/npm/template-oss/pull/308) add the -R flag to the post-publish action for easier copy/paste (#308) (@nlf)
+* [`1babe54`](https://github.com/npm/template-oss/commit/1babe54a8db71b40cf0eaabf3ee056796ba333ae) [#306](https://github.com/npm/template-oss/pull/306) use a more portable means of spawning subshells (#306) (@nlf)
+* [`7a2481c`](https://github.com/npm/template-oss/commit/7a2481c7312a539bfdba6881ac8fbadae41c64b9) [#305](https://github.com/npm/template-oss/pull/305) update the LouisBrunner/checks-action to latest (#305) (@nlf)
+
+## [4.14.1](https://github.com/npm/template-oss/compare/v4.14.0...v4.14.1) (2023-04-19)
+
+### Bug Fixes
+
+* [`f8976ca`](https://github.com/npm/template-oss/commit/f8976ca3a18ff6924c656cd486c9691f613d833f) [#303](https://github.com/npm/template-oss/pull/303) add id-token access to publish action (#303) (@wraithgar)
+
+## [4.14.0](https://github.com/npm/template-oss/compare/v4.13.0...v4.14.0) (2023-04-19)
+
+### Features
+
+* [`31ce960`](https://github.com/npm/template-oss/commit/31ce960dd269d0560fe9496b287efd1bbe4f01aa) [#302](https://github.com/npm/template-oss/pull/302) publish with provenance (#302) (@wraithgar)
+
+### Dependencies
+
+* [`d17e7d9`](https://github.com/npm/template-oss/commit/d17e7d9b7593f6a97038c8b01c35cf9b3fae9497) [#300](https://github.com/npm/template-oss/pull/300) bump glob from 9.3.5 to 10.1.0 (#300)
+
 ## [4.13.0](https://github.com/npm/template-oss/compare/v4.12.1...v4.13.0) (2023-03-23)
 
 ### Features

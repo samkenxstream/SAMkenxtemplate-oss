@@ -124,7 +124,7 @@ jobs:
 
             return { summary }
       - name: Create Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         id: check
         if: steps.release.outputs.pr-sha
         with:
@@ -215,7 +215,7 @@ jobs:
 
             return { summary }
       - name: Create Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         id: check
         if: steps.commit.outputs.sha
         with:
@@ -225,7 +225,7 @@ jobs:
           sha: ${{ steps.commit.outputs.sha }}
           output: ${{ steps.check-output.outputs.result }}
       - name: Conclude Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         if: needs.release.outputs.check-id && always()
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -263,7 +263,7 @@ jobs:
           fi
           echo "result=$result" >> $GITHUB_OUTPUT
       - name: Conclude Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         if: needs.update.outputs.check-id && always()
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -322,6 +322,7 @@ jobs:
         shell: bash
     permissions:
       deployments: write
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -338,7 +339,7 @@ jobs:
       - name: Publish
         env:
           PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
-        run: npm publish
+        run: npm publish --provenance
 
   post-release-integration:
     needs: [ release, release-integration ]

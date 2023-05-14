@@ -163,6 +163,35 @@ blank_issues_enabled: true
   ]
 }
 
+.github/settings.yml
+========================================
+# This file is automatically added by @npmcli/template-oss. Do not edit.
+
+repository:
+  allow_merge_commit: false
+  allow_rebase_merge: true
+  allow_squash_merge: true
+  squash_merge_commit_title: PR_TITLE
+  squash_merge_commit_message: PR_BODY
+  delete_branch_on_merge: true
+  enable_automated_security_fixes: true
+  enable_vulnerability_alerts: true
+
+branches:
+  - name: main
+    protection:
+      required_status_checks: null
+      enforce_admins: true
+      required_pull_request_reviews:
+        required_approving_review_count: 1
+        require_code_owner_reviews: true
+        require_last_push_approval: true
+        dismiss_stale_reviews: true
+      restrictions:
+        apps: []
+        users: []
+        teams: [ "cli-team" ]
+
 .github/workflows/audit.yml
 ========================================
 # This file is automatically added by @npmcli/template-oss. Do not edit.
@@ -270,7 +299,7 @@ jobs:
 
             return { summary }
       - name: Create Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         id: check
         if: inputs.check-sha
         with:
@@ -302,7 +331,7 @@ jobs:
       - name: Post Lint
         run: npm run postlint --ignore-scripts
       - name: Conclude Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         if: steps.check.outputs.check_id && always()
         with:
           token: \${{ secrets.GITHUB_TOKEN }}
@@ -371,7 +400,7 @@ jobs:
 
             return { summary }
       - name: Create Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         id: check
         if: inputs.check-sha
         with:
@@ -417,7 +446,7 @@ jobs:
       - name: Test
         run: npm test --ignore-scripts
       - name: Conclude Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         if: steps.check.outputs.check_id && always()
         with:
           token: \${{ secrets.GITHUB_TOKEN }}
@@ -747,8 +776,10 @@ jobs:
           npx --offline commitlint -V --from 'origin/\${{ github.base_ref }}' --to \${{ github.event.pull_request.head.sha }}
       - name: Run Commitlint on PR Title
         if: steps.commit.outcome == 'failure'
+        env:
+          PR_TITLE: \${{ github.event.pull_request.title }}
         run: |
-          echo '\${{ github.event.pull_request.title }}' | npx --offline commitlint -V
+          echo '$PR_TITLE' | npx --offline commitlint -V
 
 .github/workflows/release.yml
 ========================================
@@ -878,7 +909,7 @@ jobs:
 
             return { summary }
       - name: Create Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         id: check
         if: steps.release.outputs.pr-sha
         with:
@@ -969,7 +1000,7 @@ jobs:
 
             return { summary }
       - name: Create Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         id: check
         if: steps.commit.outputs.sha
         with:
@@ -979,7 +1010,7 @@ jobs:
           sha: \${{ steps.commit.outputs.sha }}
           output: \${{ steps.check-output.outputs.result }}
       - name: Conclude Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         if: needs.release.outputs.check-id && always()
         with:
           token: \${{ secrets.GITHUB_TOKEN }}
@@ -1017,7 +1048,7 @@ jobs:
           fi
           echo "result=$result" >> $GITHUB_OUTPUT
       - name: Conclude Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         if: needs.update.outputs.check-id && always()
         with:
           token: \${{ secrets.GITHUB_TOKEN }}
@@ -1186,6 +1217,7 @@ jobs:
 !/bin/
 !/CHANGELOG*
 !/CODE_OF_CONDUCT.md
+!/CONTRIBUTING.md
 !/docs/
 !/lib/
 !/LICENSE*
@@ -1219,6 +1251,59 @@ Conduct](https://docs.npmjs.com/policies/conduct)
 
 The npm cli team may, at its own discretion, moderate, remove, or edit
 any interactions such as pull requests, issues, and comments.
+
+CONTRIBUTING.md
+========================================
+<!-- This file is automatically added by @npmcli/template-oss. Do not edit. -->
+
+# Contributing
+
+## Code of Conduct
+
+All interactions in the **npm** organization on GitHub are considered to be covered by our standard [Code of Conduct](https://docs.npmjs.com/policies/conduct).
+
+## Reporting Bugs
+
+Before submitting a new bug report please search for an existing or similar report.
+
+Use one of our existing issue templates if you believe you've come across a unique problem.
+
+Duplicate issues, or issues that don't use one of our templates may get closed without a response.
+
+## Pull Request Conventions
+
+### Commits
+
+We use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
+
+When opening a pull request please be sure that either the pull request title, or each commit in the pull request, has one of the following prefixes:
+
+ - \`feat\`: For when introducing a new feature.  The result will be a new semver minor version of the package when it is next published.
+ - \`fix\`: For bug fixes. The result will be a new semver patch version of the package when it is next published.
+ - \`docs\`: For documentation updates.  The result will be a new semver patch version of the package when it is next published.
+ - \`chore\`: For changes that do not affect the published module.  Often these are changes to tests.  The result will be *no* change to the version of the package when it is next published (as the commit does not affect the published version).
+
+### Test Coverage
+
+Pull requests made against this repo will run \`npm test\` automatically.  Please make sure tests pass locally before submitting a PR.
+
+Every new feature or bug fix should come with a corresponding test or tests that validate the solutions. Testing also reports on code coverage and will fail if code coverage drops.
+
+### Linting
+
+Linting is also done automatically once tests pass.  \`npm run lintfix\` will fix most linting errors automatically.
+
+Please make sure linting passes before submitting a PR.
+
+## What _not_ to contribute?
+
+### Dependencies
+
+It should be noted that our team does not accept third-party dependency updates/PRs.  If you submit a PR trying to update our dependencies we will close it with or without a reference to these contribution guidelines.
+
+### Tools/Automation
+
+Our core team is responsible for the maintenance of the tooling/automation in this project and we ask contributors to not make changes to these when contributing (e.g. \`.github/*\`, \`.eslintrc.json\`, \`.licensee.json\`).  Most of those files also have a header at the top to remind folks they are automatically generated.  Pull requests that alter these will not be accepted.
 
 package.json
 ========================================
@@ -1513,6 +1598,35 @@ blank_issues_enabled: true
     }
   ]
 }
+
+.github/settings.yml
+========================================
+# This file is automatically added by @npmcli/template-oss. Do not edit.
+
+repository:
+  allow_merge_commit: false
+  allow_rebase_merge: true
+  allow_squash_merge: true
+  squash_merge_commit_title: PR_TITLE
+  squash_merge_commit_message: PR_BODY
+  delete_branch_on_merge: true
+  enable_automated_security_fixes: true
+  enable_vulnerability_alerts: true
+
+branches:
+  - name: main
+    protection:
+      required_status_checks: null
+      enforce_admins: true
+      required_pull_request_reviews:
+        required_approving_review_count: 1
+        require_code_owner_reviews: true
+        require_last_push_approval: true
+        dismiss_stale_reviews: true
+      restrictions:
+        apps: []
+        users: []
+        teams: [ "cli-team" ]
 
 .github/workflows/audit.yml
 ========================================
@@ -1849,7 +1963,7 @@ jobs:
 
             return { summary }
       - name: Create Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         id: check
         if: inputs.check-sha
         with:
@@ -1881,7 +1995,7 @@ jobs:
       - name: Post Lint
         run: npm run postlint --ignore-scripts -ws -iwr --if-present
       - name: Conclude Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         if: steps.check.outputs.check_id && always()
         with:
           token: \${{ secrets.GITHUB_TOKEN }}
@@ -1950,7 +2064,7 @@ jobs:
 
             return { summary }
       - name: Create Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         id: check
         if: inputs.check-sha
         with:
@@ -1996,7 +2110,7 @@ jobs:
       - name: Test
         run: npm test --ignore-scripts -ws -iwr --if-present
       - name: Conclude Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         if: steps.check.outputs.check_id && always()
         with:
           token: \${{ secrets.GITHUB_TOKEN }}
@@ -2332,8 +2446,10 @@ jobs:
           npx --offline commitlint -V --from 'origin/\${{ github.base_ref }}' --to \${{ github.event.pull_request.head.sha }}
       - name: Run Commitlint on PR Title
         if: steps.commit.outcome == 'failure'
+        env:
+          PR_TITLE: \${{ github.event.pull_request.title }}
         run: |
-          echo '\${{ github.event.pull_request.title }}' | npx --offline commitlint -V
+          echo '$PR_TITLE' | npx --offline commitlint -V
 
 .github/workflows/release.yml
 ========================================
@@ -2463,7 +2579,7 @@ jobs:
 
             return { summary }
       - name: Create Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         id: check
         if: steps.release.outputs.pr-sha
         with:
@@ -2554,7 +2670,7 @@ jobs:
 
             return { summary }
       - name: Create Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         id: check
         if: steps.commit.outputs.sha
         with:
@@ -2564,7 +2680,7 @@ jobs:
           sha: \${{ steps.commit.outputs.sha }}
           output: \${{ steps.check-output.outputs.result }}
       - name: Conclude Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         if: needs.release.outputs.check-id && always()
         with:
           token: \${{ secrets.GITHUB_TOKEN }}
@@ -2602,7 +2718,7 @@ jobs:
           fi
           echo "result=$result" >> $GITHUB_OUTPUT
       - name: Conclude Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         if: needs.update.outputs.check-id && always()
         with:
           token: \${{ secrets.GITHUB_TOKEN }}
@@ -2771,6 +2887,7 @@ jobs:
 !/bin/
 !/CHANGELOG*
 !/CODE_OF_CONDUCT.md
+!/CONTRIBUTING.md
 !/docs/
 !/lib/
 !/LICENSE*
@@ -2810,6 +2927,59 @@ Conduct](https://docs.npmjs.com/policies/conduct)
 
 The npm cli team may, at its own discretion, moderate, remove, or edit
 any interactions such as pull requests, issues, and comments.
+
+CONTRIBUTING.md
+========================================
+<!-- This file is automatically added by @npmcli/template-oss. Do not edit. -->
+
+# Contributing
+
+## Code of Conduct
+
+All interactions in the **npm** organization on GitHub are considered to be covered by our standard [Code of Conduct](https://docs.npmjs.com/policies/conduct).
+
+## Reporting Bugs
+
+Before submitting a new bug report please search for an existing or similar report.
+
+Use one of our existing issue templates if you believe you've come across a unique problem.
+
+Duplicate issues, or issues that don't use one of our templates may get closed without a response.
+
+## Pull Request Conventions
+
+### Commits
+
+We use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
+
+When opening a pull request please be sure that either the pull request title, or each commit in the pull request, has one of the following prefixes:
+
+ - \`feat\`: For when introducing a new feature.  The result will be a new semver minor version of the package when it is next published.
+ - \`fix\`: For bug fixes. The result will be a new semver patch version of the package when it is next published.
+ - \`docs\`: For documentation updates.  The result will be a new semver patch version of the package when it is next published.
+ - \`chore\`: For changes that do not affect the published module.  Often these are changes to tests.  The result will be *no* change to the version of the package when it is next published (as the commit does not affect the published version).
+
+### Test Coverage
+
+Pull requests made against this repo will run \`npm test\` automatically.  Please make sure tests pass locally before submitting a PR.
+
+Every new feature or bug fix should come with a corresponding test or tests that validate the solutions. Testing also reports on code coverage and will fail if code coverage drops.
+
+### Linting
+
+Linting is also done automatically once tests pass.  \`npm run lintfix\` will fix most linting errors automatically.
+
+Please make sure linting passes before submitting a PR.
+
+## What _not_ to contribute?
+
+### Dependencies
+
+It should be noted that our team does not accept third-party dependency updates/PRs.  If you submit a PR trying to update our dependencies we will close it with or without a reference to these contribution guidelines.
+
+### Tools/Automation
+
+Our core team is responsible for the maintenance of the tooling/automation in this project and we ask contributors to not make changes to these when contributing (e.g. \`.github/*\`, \`.eslintrc.json\`, \`.licensee.json\`).  Most of those files also have a header at the top to remind folks they are automatically generated.  Pull requests that alter these will not be accepted.
 
 package.json
 ========================================
@@ -3141,6 +3311,35 @@ updates:
   ]
 }
 
+.github/settings.yml
+========================================
+# This file is automatically added by @npmcli/template-oss. Do not edit.
+
+repository:
+  allow_merge_commit: false
+  allow_rebase_merge: true
+  allow_squash_merge: true
+  squash_merge_commit_title: PR_TITLE
+  squash_merge_commit_message: PR_BODY
+  delete_branch_on_merge: true
+  enable_automated_security_fixes: true
+  enable_vulnerability_alerts: true
+
+branches:
+  - name: main
+    protection:
+      required_status_checks: null
+      enforce_admins: true
+      required_pull_request_reviews:
+        required_approving_review_count: 1
+        require_code_owner_reviews: true
+        require_last_push_approval: true
+        dismiss_stale_reviews: true
+      restrictions:
+        apps: []
+        users: []
+        teams: [ "cli-team" ]
+
 .github/workflows/ci-a.yml
 ========================================
 # This file is automatically added by @npmcli/template-oss. Do not edit.
@@ -3434,7 +3633,7 @@ jobs:
 
             return { summary }
       - name: Create Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         id: check
         if: inputs.check-sha
         with:
@@ -3466,7 +3665,7 @@ jobs:
       - name: Post Lint
         run: npm run postlint --ignore-scripts -ws -iwr --if-present
       - name: Conclude Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         if: steps.check.outputs.check_id && always()
         with:
           token: \${{ secrets.GITHUB_TOKEN }}
@@ -3535,7 +3734,7 @@ jobs:
 
             return { summary }
       - name: Create Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         id: check
         if: inputs.check-sha
         with:
@@ -3581,7 +3780,7 @@ jobs:
       - name: Test
         run: npm test --ignore-scripts -ws -iwr --if-present
       - name: Conclude Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         if: steps.check.outputs.check_id && always()
         with:
           token: \${{ secrets.GITHUB_TOKEN }}
@@ -3760,8 +3959,10 @@ jobs:
           npx --offline commitlint -V --from 'origin/\${{ github.base_ref }}' --to \${{ github.event.pull_request.head.sha }}
       - name: Run Commitlint on PR Title
         if: steps.commit.outcome == 'failure'
+        env:
+          PR_TITLE: \${{ github.event.pull_request.title }}
         run: |
-          echo '\${{ github.event.pull_request.title }}' | npx --offline commitlint -V
+          echo '$PR_TITLE' | npx --offline commitlint -V
 
 .github/workflows/release.yml
 ========================================
@@ -3891,7 +4092,7 @@ jobs:
 
             return { summary }
       - name: Create Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         id: check
         if: steps.release.outputs.pr-sha
         with:
@@ -3982,7 +4183,7 @@ jobs:
 
             return { summary }
       - name: Create Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         id: check
         if: steps.commit.outputs.sha
         with:
@@ -3992,7 +4193,7 @@ jobs:
           sha: \${{ steps.commit.outputs.sha }}
           output: \${{ steps.check-output.outputs.result }}
       - name: Conclude Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         if: needs.release.outputs.check-id && always()
         with:
           token: \${{ secrets.GITHUB_TOKEN }}
@@ -4030,7 +4231,7 @@ jobs:
           fi
           echo "result=$result" >> $GITHUB_OUTPUT
       - name: Conclude Check
-        uses: LouisBrunner/checks-action@v1.3.1
+        uses: LouisBrunner/checks-action@v1.6.0
         if: needs.update.outputs.check-id && always()
         with:
           token: \${{ secrets.GITHUB_TOKEN }}

@@ -35,6 +35,7 @@ The following repo files need to be added:
   .github/ISSUE_TEMPLATE/bug.yml
   .github/ISSUE_TEMPLATE/config.yml
   .github/matchers/tap.json
+  .github/settings.yml
   .github/workflows/audit.yml
   .github/workflows/ci-release.yml
   .github/workflows/ci.yml
@@ -55,6 +56,7 @@ The following module files need to be added:
   .gitignore
   .npmrc
   CODE_OF_CONDUCT.md
+  CONTRIBUTING.md
   SECURITY.md
 
 To correct it: npx template-oss-apply --force
@@ -132,6 +134,7 @@ To correct it: move files to not match one of the following patterns:
   !/bin/
   !/CHANGELOG*
   !/CODE_OF_CONDUCT.md
+  !/CONTRIBUTING.md
   !/docs/
   !/lib/
   !/LICENSE*
@@ -170,6 +173,7 @@ To correct it: move files to not match one of the following patterns:
   !/bin/
   !/CHANGELOG*
   !/CODE_OF_CONDUCT.md
+  !/CONTRIBUTING.md
   !/docs/
   !/lib/
   !/LICENSE*
@@ -282,6 +286,7 @@ The following repo files need to be added:
   .github/ISSUE_TEMPLATE/bug.yml
   .github/ISSUE_TEMPLATE/config.yml
   .github/matchers/tap.json
+  .github/settings.yml
   .github/workflows/audit.yml
   .github/workflows/ci-release.yml
   .github/workflows/ci.yml
@@ -302,6 +307,7 @@ The following module files need to be added:
   .gitignore
   .npmrc
   CODE_OF_CONDUCT.md
+  CONTRIBUTING.md
   SECURITY.md
 
 To correct it: npx template-oss-apply --force
@@ -365,6 +371,7 @@ The following repo files need to be added:
 
   .github/dependabot.yml
   .github/matchers/tap.json
+  .github/settings.yml
   .github/workflows/ci-name-aaaa.yml
   .github/workflows/ci-release.yml
   .github/workflows/post-dependabot.yml
@@ -436,6 +443,7 @@ The following repo files need to be added:
 
   .github/dependabot.yml
   .github/matchers/tap.json
+  .github/settings.yml
   .github/workflows/ci-bbb.yml
   .github/workflows/ci-release.yml
   .github/workflows/post-dependabot.yml
